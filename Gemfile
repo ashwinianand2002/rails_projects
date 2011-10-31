@@ -2,6 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.0'
 
+
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
@@ -19,6 +20,8 @@ end
 gem 'jquery-rails'
 group :development do
   gem 'rspec-rails', '2.6.1'
+  gem 'annotate', '2.4.0'
+
 end
 
 group :test do
