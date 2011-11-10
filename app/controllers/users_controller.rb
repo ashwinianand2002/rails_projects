@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   def update
     @user= User.find(params[:id])
     if @user.update_attributes(params[:user])
-      flash[:sucess]= "Profile updated"
+      flash[:success]= "Profile updated"
       redirect_to @user
     else
       @title="Edit User"
@@ -45,19 +45,15 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  def show
-    @user = User.find(params[:id])
-  end
-
-
   private
 
   def authenticate
-    deny_access unless signed_in?
+    deny_access "Please sign in" unless signed_in?
   end
 
   def correct_user
-    deny_access unless current_user == @user
+    @user = User.find(params[:id])
+    deny_access "You are not the correct user for this operation" unless current_user == @user
   end
 
 

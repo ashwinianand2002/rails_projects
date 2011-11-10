@@ -10,7 +10,7 @@ module SessionsHelper
 	end
 
 	def signed_in?
-		!current_user.nil?
+		!(@current_user == nil?)
 	end
 	
 	def sign_out
@@ -22,9 +22,10 @@ module SessionsHelper
     @current_user ||= user_from_remember_token
   end
 
-  def deny_access
+  def deny_access(message)
+    logger.info "Reached deny_access"
     store_location
-    redirect_to signin_path, :notice => "Please sign in to access this page"
+    redirect_to signin_path, :notice => message
   end
 
   def redirect_back_or(default)
